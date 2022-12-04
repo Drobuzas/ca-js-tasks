@@ -172,10 +172,17 @@ console.log();
 console.group("20. Sukurkite funkciją, kuri grąžina indeksų masyvą su visais vartotojo įvestos raidės pasikartojimais žodyje");
 {
 
-  function indexesOfLetter(str, searchSymbol) {
-    const search = str[searchSymbol] ?? searchSymbol;
-    const letterRegex = new RegExp(search);
-    const foundResults = str.search(letterRegex);
+  const symbolChecks = {
+    a: 'a',
+    m: 'm',
+    2: '2'
+  }
+  
+  function indexesOfLetter(str, searchLetter) {
+    const search = symbolChecks[searchLetter] ?? searchLetter;
+    const letterRegex = new RegExp(`[${search}]`, 'ig');
+    const foundResults = [...str.matchAll(letterRegex)];
+    
     return foundResults;
   }
 
@@ -190,3 +197,4 @@ console.group("20. Sukurkite funkciją, kuri grąžina indeksų masyvą su visai
 }
 console.groupEnd();
 console.log();
+
